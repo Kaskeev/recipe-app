@@ -37,8 +37,8 @@ function addMeal(mealData, random = false){
                 alt="${mealData.Meal}">
             </div>
             <div class="meal-body">
-                <h4>${mealData.strCategory}</h4>
-                <button class="fav_btn active">
+                <h4>${mealData.strMeal}</h4>
+                <button class="fav_btn">
                     <i class="fa fa-heart"></i>
                 </button>
             </div>
@@ -46,4 +46,22 @@ function addMeal(mealData, random = false){
     `;
 
     meals.appendChild(meal);
+
+    const btn = document.querySelector(" .fav_btn");
+
+    btn.addEventListener("click", () => {
+        btn.classList.toggle("active");
+    });
+}
+
+function addMealtoLS(meal){
+    const mealIds = getMealsFromLS();
+
+    localStorage.setItem(".mealIds", JSON.stringify ([...mealIds, mealId]));
+}
+
+function getMealsFromLS(){
+    const mealIds = JSON.parse(localStorage.getItem('mealIds'));
+
+    return mealIds;
 }
